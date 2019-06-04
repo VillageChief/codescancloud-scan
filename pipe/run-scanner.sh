@@ -2,6 +2,8 @@
 
 source "$(dirname "$0")/common.sh"
 
+SCANNER_REPORT="${BITBUCKET_PIPE_STORAGE_DIR}/sonarcloud-scan.log"
+
 parse_environment_variables() {
   EXTRA_ARGS=${EXTRA_ARGS:=""}
   SONAR_TOKEN=${SONAR_TOKEN:?'SONAR_TOKEN variable missing.'}
@@ -10,7 +12,6 @@ parse_environment_variables() {
 
 parse_environment_variables
 
-OUTPUT_FILE="${BITBUCKET_CLONE_DIR}/sonarcloud-scan.log"
 IFS=$'\n' ALL_ARGS=( $(xargs -n1 <<<"${EXTRA_ARGS}") )
 
 if [[ "${DEBUG}" == "true" ]]; then
@@ -20,9 +21,9 @@ if [[ "${DEBUG}" == "true" ]]; then
     debug "Final analysis parameters:\n${ALL_ARGS[@]}"
 fi
 
-(sonar-scanner "${ALL_ARGS[@]}" $2>&1 | tee ${OUTPUT_FILE}) || true
+(sonar-scanner "${ALL_ARGS[@]}" 2>&1 | tee "${SCANNER_REPORT}") || true
 
-if grep -q "EXECUTION SUCCESS" ${OUTPUT_FILE}
+if grep -q "EXECUTION SUCCESS" "${SCANNER_REPORT}"
 then
   success "SonarCloud analysis was successful."
 else
