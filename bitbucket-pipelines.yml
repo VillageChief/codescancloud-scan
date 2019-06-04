@@ -4,16 +4,17 @@ image:
 push: &push
   step:
     name: Push and Tag
-    image: python:3.6.7
     script:
-      - pip install semversioner==0.6.16
-      - ./ci-scripts/bump-version.sh
       - ./ci-scripts/docker-release.sh sonarsource/$BITBUCKET_REPO_SLUG
-      - ./ci-scripts/git-push.sh
+      - ./ci-scripts/git-tag.sh
     services:
       - docker
 
 pipelines:
-  custom:
-    release:
+  branches:
+    master:
+      - <<: *push
+    qa-*:
+      - <<: *push
+    feature/*:
       - <<: *push
