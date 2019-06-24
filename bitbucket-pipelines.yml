@@ -8,7 +8,7 @@ release: &release
     script:
       - pip install semversioner==0.6.16
       - ./ci-scripts/bump-version.sh
-      - ./ci-scripts/docker-release.sh sonarsource/$BITBUCKET_REPO_SLUG
+      - ./ci-scripts/docker-release.sh codescan/$BITBUCKET_REPO_SLUG
       - ./ci-scripts/git-push.sh
     services:
       - docker
@@ -20,7 +20,7 @@ build-docker-qa: &build-docker-qa
     script:
       - pip install semversioner==0.6.16
       - ./ci-scripts/bump-version.sh
-      - ./ci-scripts/docker-release.sh sonarsource/$BITBUCKET_REPO_SLUG QA
+      - ./ci-scripts/docker-release.sh codescan/$BITBUCKET_REPO_SLUG QA
     services:
       - docker
 

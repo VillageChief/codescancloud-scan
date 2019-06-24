@@ -33,7 +33,7 @@ Preparing a branch for validation by PM
 Create a QA build of the pipe's Docker image:
 run the `build-docker-qa` pipeline manually for the feature branch.
 
-This will trigger the deployment of a Docker image on https://hub.docker.com/r/sonarsource/sonarcloud-scan/tags,
+This will trigger the deployment of a Docker image on https://hub.docker.com/r/codescan/codescancloud-scan/tags,
 tagged `${VERSION}.${BITBUCKET_BUILD_NUMBER}-QA`.
 
 Edit the `pipe.yml` in a "DO NOT MERGE" commit,
@@ -56,17 +56,17 @@ Example pipeline definition for a JavaScript project:
     pipelines:
       default:
         - step:
-            name: Build, run tests, analyze on SonarCloud
+            name: Build, run tests, analyze on CodeScanCloud
             caches:
               - node
             script:
               - npm install
               - npm test
-              - pipe: sonarsource/sonarcloud-scan:name-of-feature-branch
+              - pipe: codescan/codescancloud-scan:name-of-feature-branch
         - step:
-            name: Check Quality Gate on SonarCloud
+            name: Check Quality Gate on CodeScanCloud
             script:
-              - pipe: sonarsource/sonarcloud-quality-gate:0.1.0
+              - pipe: codescan/codescancloud-quality-gate:0.1.0
         - step:
             name: Deploy to Production
             deployment: "Production"

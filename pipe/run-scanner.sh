@@ -2,7 +2,7 @@
 
 source "$(dirname "$0")/common.sh"
 
-SCANNER_REPORT="${BITBUCKET_PIPE_STORAGE_DIR}/sonarcloud-scan.log"
+SCANNER_REPORT="${BITBUCKET_PIPE_STORAGE_DIR}/codescancloud-scan.log"
 
 parse_environment_variables() {
   EXTRA_ARGS=${EXTRA_ARGS:=""}
@@ -25,7 +25,7 @@ fi
 
 if grep -q "EXECUTION SUCCESS" "${SCANNER_REPORT}"
 then
-  success "SonarCloud analysis was successful."
+  success "CodeScanCloud analysis was successful."
 else
-  fail "SonarCloud analysis failed."
+  fail "CodeScanCloud analysis failed."
 fi

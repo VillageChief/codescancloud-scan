@@ -1,15 +1,14 @@
-name: SonarCloud scan
+name: CodeScanCloud scan
 description: Detect bugs & vulnerabilities in your repository
-image: sonarsource/sonarcloud-scan:1.0.0
+image: codescan/codescancloud-scan:1.0.0
 variables:
   - name: SONAR_TOKEN
     default: '${SONAR_TOKEN}'
-repository: https://bitbucket.org/sonarsource/sonarcloud-scan
-maintainer: contact@sonarsource.com
-icon: https://sonarcloud.io/images/sonarcloud-square-logo.svg
+repository: https://github.com/VillageChief/codescancloud-scan
+maintainer: support@code-scan.com
+icon: https://app.codescan.io/images/codescancloud-square-logo.svg
 tags:
-  - SonarCloud
-  - SonarSource
+  - CodeScanCloud
   - pull request
   - code analysis
   - code quality
