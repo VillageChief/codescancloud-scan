@@ -4,6 +4,9 @@ image: codescan/codescancloud-scan:1.0.0
 variables:
   - name: SONAR_TOKEN
     default: '${SONAR_TOKEN}'
+variables:
+  - name: SONAR_ORGANIZATION
+    default: '${SONAR_ORGANIZATION}'
 repository: https://github.com/VillageChief/codescancloud-scan
 maintainer: support@code-scan.com
 icon: https://app.codescan.io/images/codescancloud-square-logo.svg
