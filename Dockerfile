@@ -1,6 +1,6 @@
 FROM openjdk:11.0.2-jre-slim-stretch
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends git mercurial wget \
+    && apt-get install -y --no-install-recommends git mercurial wget pylint \
     && rm -rf /var/lib/apt/lists/*
 
 ARG SONAR_SCANNER_HOME=/opt/sonar-scanner
